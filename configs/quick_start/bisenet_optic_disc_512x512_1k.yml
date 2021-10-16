@@ -1,0 +1,46 @@
+batch_size: 4
+iters: 80000
+
+train_dataset:
+  type: Dataset
+  dataset_root: /home/aistudio/data/dataset
+  train_path: /home/aistudio/data/dataset/train_list.txt
+  num_classes: 3
+  transforms:
+    - type: Resize
+      target_size: [512, 512]
+    - type: RandomHorizontalFlip
+    - type: Normalize
+  mode: train
+
+val_dataset:
+  type: Dataset
+  dataset_root: /home/aistudio/data/dataset
+  val_path: /home/aistudio/data/dataset/val_list.txt
+  num_classes: 3
+  transforms:
+    - type: Resize
+      target_size: [512, 512]
+    - type: Normalize
+  mode: val
+
+optimizer:
+  type: sgd
+  momentum: 0.9
+  weight_decay: 4.0e-5
+
+lr_scheduler:
+  type: PolynomialDecay
+  learning_rate: 0.01
+  end_lr: 0
+  power: 0.9
+
+loss:
+  types:
+    - type: CrossEntropyLoss
+  coef: [1, 1, 1, 1, 1]
+
+model:
+  type: BiSeNetV2
+  pretrained: Null
+

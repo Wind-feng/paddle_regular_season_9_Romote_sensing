@@ -1,0 +1,22 @@
+train_dataset:
+  type: Dataset
+  dataset_root: data/optic_disc_seg
+  train_path: dataset/optic_disc_seg/train_list.txt
+  num_classes: 2
+  transforms:
+    - type: Resize
+      target_size: [512, 512]
+    - type: RandomHorizontalFlip
+    - type: Normalize
+  mode: train
+
+val_dataset:
+  type: Dataset
+  dataset_root: data/optic_disc_seg
+  val_path: data/optic_disc_seg/val_list.txt
+  num_classes: 2
+  transforms:
+    - type: Resize  
+      target_size: [512, 512]  
+    - type: Normalize
+  mode: val
